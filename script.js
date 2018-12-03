@@ -1,145 +1,106 @@
 'use strict';
 
-// const value = 8;
+// const names = ['Mango', 'Poly', 'Ajax'];
 
-// console.log('value > 5 && value < 10: ', value > 5 && value < 10);
-// console.log('value < 5 || value > 10: ', value < 5 || value > 10);
+// console.log(names);
+// console.log('length: ', names.length);
 
-// const value = 10;
+// names[0] = 'Kiwi';
+// console.log(names);
+// console.log('length: ', names.length);
 
-// if (value > 5) {
-//   console.log('Больше 5!');
-// } else if (value < 5) {
-//   console.log('Меньше 5!');
+// names[3] = 'Mango';
+// console.log(names);
+// console.log('length: ', names.length);
+
+// console.log(names[600]);
+// console.log('length: ', names.length);
+
+// names[5] = 'Chelsey';
+// console.log(names);
+// console.log('length: ', names.length);
+
+// names.length = 2;
+// console.log(names);
+
+// matrix
+// const matrix = [[1, 2, 3], [4, 5, 6, ['a', 'b', 'c']], [7, 8, 9]];
+// console.log(matrix);
+// console.log(matrix[1][3][1]);
+
+// Split & Joing
+
+// const message = 'Hello JS world';
+// const arr = message.split(' ');
+
+// console.log(arr);
+
+// const newMessage = arr.join(' <-> ');
+// console.log(newMessage);
+
+//  indexOf() и includes()
+// const numbers = [6, 8, 10, 15, 25, 30, 47];
+// const min = numbers[0];
+// const max = numbers[numbers.length - 1];
+
+// const input = prompt(`Угадайте число от ${min} до ${max}`);
+
+// const value = Number(input);
+
+// const isInArray = numbers.includes(value);
+
+// if (isInArray) {
+//   console.log('Угадали!');
 // } else {
-//   console.log('Равно пяти!');
+//   console.log('Не угадали!');
 // }
 
-// // else {
-// //   console.log('Меньше 5!');
-// // }
+// push(), pop(), shift(), unshift()
 
-// console.log('Код после if!');
+// const names = ['Mango', 'Ajax', 'Poly'];
 
-// const value = 5;
-// let message;
+// names.push('Kiwi', 123);
+// console.log(names);
 
-// if (value > 5) {
-//   message = 'Больше 5';
-// } else {
-//   message = 'Меньше 5';
-// }
+// names.pop();
+// console.log(names);
 
-// message = value > 5 ? 'Больше 5' : 'Меньше 5';
+// names.shift();
+// console.log(names);
 
-// if else if ...
-// const userInput = prompt('Введите положительное число!');
-// let message = '';
+// names.unshift('a', 'b');
+// console.log(names);
 
-// // !null -> !false -> true
-// // алтернатива userInput === null
-// if (!userInput) {
-//   message = 'Была нажата отмена!';
-// } else if (Number(userInput) > 0) {
-//   message = `Ввели число ${Number(userInput)}`;
-// } else {
-//   message = 'Невалидные данные!';
-// }
+// Array.slice()
 
-// console.log(message);
+// const names = ['Mango', 'Poly', 'Ajax', 'Kiwi'];
+// const newNames = names.slice(0, 2);
 
-// switch
-// let userInput = prompt(
-//   'Варианты доставки: 0 - самовывоз, 1 - курьер, 2 - новая почта',
-// );
-// let message;
+// console.log('newNames: ', newNames);
 
-// if (!userInput) {
-//   console.log('Отмена!');
-// } else {
-//   userInput = Number(userInput);
+// Array.splice()
 
-//   // if (userInput === 0) {
-//   //   console.log('самовывоз');
-//   // } else if (userInput === 1) {
-//   //   console.log('курьер');
-//   // } else if (userInput === 2) {
-//   //   console.log('новая почта');
-//   // } else {
-//   // неверный ввод
-//   // }
+// const names = ['Mango', 'Poly', 'Ajax', 'Kiwi'];
 
-//   switch (userInput) {
-//     case 0:
-//       console.log('самовывоз');
-//       break;
-//     case 1:
-//       console.log('курьер');
-//       break;
-//     case 2:
-//       console.log('новая почта');
-//       break;
+// const deletedEls = names.splice(1, 3);
+// console.log('удаленные элементы: ', deletedEls);
+// console.log(names);
 
-//     default:
-//       console.log('неверный ввод');
-//   }
+// names.splice(2, 0, 'Chelsey', 'Monkong');
+// console.log(names);
 
-//   console.log('после switch');
-// }
+// names.splice(1, 2, 'a', 'b');
+// console.log(names);
 
-/*
-  Напишите скрипт который:
+// Array.concat()
 
-  - Через prompt cпрашивает 'Введите произвольное число'
-  - Если пользователь нажал Cancel - показывать alert 'Приходите еще!'
-  - Если посетитель вводит число - показывать alert со строкой 'Спасибо!'
-  - Если посетитель вводит что либо другое — показывать alert 'Необходимо было ввести целое число!'
+// const oldNames = ['Mango', 'Poly'];
+// const newNames = ['Kiwi', 'Ajax'];
 
-  PS: используйте конструкцию if..else.
-*/
+// const allNames = oldNames.concat(newNames);
+// const allNames = [].concat(oldNames, newNames);
 
-// const userInput = prompt('Введите произвольное число');
-
-// if (!userInput) {
-//   alert('Приходите еще!');
-// } else if (!Number.isNaN(Number(userInput))) {
-//   alert('Спасибо!');
-// } else {
-//   alert('Необходимо было ввести число!');
-// }
-
-// let x = 'qwe';
-// x = Number(x);
-
-// // x = 5 -> false -> !false -> true
-// // x = NaN -> true -> !true -> false
-// const isNumber = !Number.isNaN(x);
-
-// console.log(isNumber);
-
-// const isAdmin = true;
-// const isLoggedIn = false;
-
-// if (isAdmin && isLoggedIn) {
-//   console.log('запускаю!');
-// } else {
-//   console.log('нет прав!');
-// }
-
-// prompt('wewe') и нажали cancel и вернулось null
-// const value = null;
-
-// if (!value) {
-//   console.log('отмена');
-// }
-
-// const isLoggedIn = false;
-
-// if (!isLoggedIn) {
-//   console.log('не залогинен');
-// }
-
-// const price = 10;
-
-// let applesAmount = 50;
+// console.log('oldNames: ', oldNames);
+// console.log('newNames: ', newNames);
+// console.log('allNames: ', allNames);
 
