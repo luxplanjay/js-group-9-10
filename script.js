@@ -1,237 +1,143 @@
 'use strict';
 
-// Передача по значению
-// {
-//   let a = 5;
-//   let b = a;
+/**
+  const add = function(x, y) {
+    console.log('x: ', x);
+    console.log('y: ', y);
 
-//   console.log('a: ', a);
-//   console.log('b: ', b);
+    return x + y;
+  };
 
-//   a = 20;
+  const result1 = add(5, 15);
 
-//   console.log('a: ', a);
-//   console.log('b: ', b);
-// }
+  const result2 = add(10, 20);
 
-// Передача по ссылке
-// {
-//   const arrA = ['Mango'];
-//   const arrB = arrA;
+  console.log('result1: ', result1);
+  console.log('result2: ', result2);
+ */
 
-//   console.log('arrA === arrB: ', arrA === arrB);
+/* Параметры по умолчанию
 
-//   console.log('arrA: ', arrA);
-//   console.log('arrB: ', arrB);
 
-//   arrA.push('Poly');
-//   console.log('arrA: ', arrA);
-//   console.log('arrB: ', arrB);
+ const add = function(x = 5, y = 10) {
+    console.log('x: ', x);
+    console.log('y: ', y);
 
-//   arrB.push('Ajax');
-//   console.log('arrA: ', arrA);
-//   console.log('arrB: ', arrB);
+    return x + y;
+  };
 
-//   console.log('[1,2,3] === [1,2,3]: ', [1, 2, 3] === [1, 2, 3]);
-// }
+  const result = add(20);
+  console.log('result: ', result);
+ */
 
-// Циклы
-// {
-//   let counter = 0;
+/* Ищем самое маленькое число в произвольном массиве
 
-//   while (counter < 10) {
-//     console.log('counter: ', counter);
+ const numbers1 = [98, 4, 76, 5, 27, 1, 8, 2];
+  const numbers2 = [128, 4, 276, 15, 27, 21, 8, 2];
+  const numbers3 = [2398, 34, 716, 215, 27, 41, 8, 42];
 
-//     counter += 1;
-//   }
+  const findSmallestNumber = function(arr) {
+    let smallestNumber = arr[0];
 
-//   console.log('after while');
-// }
+    for (let i = 1; i < arr.length; i += 1) {
+      const currentNumber = arr[i];
 
-// {
-//   const names = ['Mango', 'Poly', 'Ajax', 'Kiwi'];
-//   let i = 0;
-//   const max = names.length;
+      if (currentNumber < smallestNumber) {
+        smallestNumber = currentNumber;
+      }
+    }
 
-//   while (i < max) {
-//     console.log('i: ', i);
-//     console.log('names[i]: ', names[i]);
+    return smallestNumber;
+  };
 
-//     i += 1;
-//   }
-// }
+  console.log(findSmallestNumber(numbers1));
+  console.log(findSmallestNumber(numbers2));
+  console.log(findSmallestNumber(numbers3));
+ */
 
-// {
-//   const values = [];
-//   const max = 5;
-//   let counter = 0;
+/* Чистые и грязные функции
 
-//   while (counter < max) {
-//     let input = prompt('Введи что-то');
+  const pureDouble = function(arr) {
+    const newArr = [];
 
-//     values.push(input);
+    for (let i = 0; i < arr.length; i += 1) {
+      newArr.push(arr[i] * 2);
+    }
 
-//     // counter = counter + 1;
-//     counter += 1;
-//   }
+    return newArr;
+  };
 
-//   console.log('values: ', values);
-// }
+  const dirtyDouble = function(arr) {
+    for (let i = 0; i < arr.length; i += 1) {
+      arr[i] = arr[i] * 2;
+    }
+  };
 
-// {
-//   let userInput;
+  const dirtyNumbers = [1, 2, 3, 4, 5];
+  const pureNumbers = [1, 2, 3, 4, 5];
 
-//   do {
-//     userInput = prompt('Введите число от 1 до 5');
+  dirtyDouble(dirtyNumbers);
+  console.log(dirtyNumbers); // [2,4,6,8,10]
 
-//     userInput = Number(userInput);
+  const doubledNumbers = pureDouble(pureNumbers);
+  console.log(pureNumbers);
+  console.log('doubledNumbers: ', doubledNumbers);
+  */
 
-//     console.log(userInput);
-//   } while (userInput < 1 || userInput > 5);
-// }
+/* Псевдомассив arguments
+  const add = function() {
+    console.log(arguments);
 
-// for
+    const args = Array.from(arguments);
+    console.log('args: ', args);
 
-// {
-//   const names = ['Mango', 'Poly', 'Ajax', 'Kiwi'];
+    let total = 0;
 
-//   for (let i = 0; i < names.length; i += 1) {
-//     console.log('i: ', i);
-//     console.log('names[i]: ', names[i]);
-//   }
+    for (let i = 0; i < args.length; i += 1) {
+      total += args[i];
+    }
 
-//   for (let i = 0; i < names.length; i += 1) {
-//     console.log('i: ', i);
-//     console.log('names[i]: ', names[i]);
-//   }
-// }
+    return total;
+  };
 
-// {
-//   const numbers = [98, 4, 76, 5, 27, 1, 8, 2];
-//   let smallestNumber = numbers[0];
+  console.log(add(5, 10));
+  console.log(add(5, 10, 15));
+  console.log(add(5, 10, 15, 20));
 
-//   for (let i = 1; i < numbers.length; i += 1) {
-//     const currentNumber = numbers[i];
+  const fn = function(arr, ...values) {
+    // То же самое что
+    // const args = Array.from(arguments);
+    // const arr = args[0];
+    // const values = args.slice(1);
 
-//     console.log('i: ', i);
-//     console.log('currentNumber: ', currentNumber);
-//     console.log('smallestNumber: ', smallestNumber);
+    console.log('arr: ', arr);
+    console.log('values: ', values);
+  };
 
-//     if (currentNumber < smallestNumber) {
-//       smallestNumber = currentNumber;
-//     }
-//   }
+fn([1, 2, 3], 3, 4, 5);
+fn([4, 6, 7], 9, 4, 12, 19);
+*/
 
-//   console.log('smallestNumber: ', smallestNumber);
-// }
+/*
+function buildLaser() {
+  const message = 'Laser Built';
+  console.log(message);
+}
 
-// {
-//   const numbers = [98, 4, 76, -20, 5, 27, 1, 8, 2];
-//   let smallestNumber = numbers[0];
+function buildMoonBase() {
+  const message = 'Moon Base Built';
+  buildLaser();
+  console.log(message);
+}
 
-//   for (const number of numbers) {
-//     if (number < smallestNumber) {
-//       smallestNumber = number;
-//     }
-//   }
+function ransomTheWorld() {
+  const message = "Give us moneys u puny hoomans or else it's lazer time!";
+  buildMoonBase();
+  console.log(message);
+}
 
-//   console.log(smallestNumber);
-// }
+ransomTheWorld();
 
-// {
-//   const numbers = [98, 3, 17, 4, 76, -20, 34, 5, 27, 1, 8, 2];
-//   const evenNumbers = [];
-
-//   for (let i = 0, max = numbers.length; i < max; i += 1) {
-//     const currentNumber = numbers[i];
-
-//     if (currentNumber % 2 === 0) {
-//       evenNumbers.push(currentNumber);
-//     }
-//   }
-
-//   console.log(numbers);
-//   console.log(evenNumbers);
-// }
-
-// {
-//   const numbers = [98, 3, 17, 4, 76, -20, 34, 5, 27, 1, 8, 2];
-//   const evenNumbers = [];
-
-//   for (const number of numbers) {
-//     if (number % 2 === 0) {
-//       evenNumbers.push(number);
-//     }
-//   }
-
-//   console.log(numbers);
-//   console.log(evenNumbers);
-// }
-
-// {
-//   const numbers = [1, 2, 3, 4, 5];
-
-//   for (let i = 0; i < numbers.length; i += 1) {
-//     numbers[i] = numbers[i] * 2;
-//   }
-
-//   console.log(numbers);
-// }
-
-// {
-//   const numbers = [1, 2, 3, 4, 5];
-
-//   for (let number of numbers) {
-//     number = number * 2;
-//   }
-
-//   console.log(numbers);
-// }
-
-// {
-//   const clients = ['Mango', 'Poly', 'Ajax'];
-//   const clientNameToFind = 'Poly';
-//   let resultMsg = 'Не нашли!';
-
-//   for (const client of clients) {
-//     if (client === clientNameToFind) {
-//       resultMsg = 'Нашли!';
-//       break;
-//     }
-//   }
-
-//   console.log(resultMsg);
-// }
-
-// Бесконечные циклы
-
-// {
-//   let userInput;
-
-//   while (true) {
-//     userInput = prompt(
-//       'Выберите вариант доставки: 1 - самовывоз, 2 - курьер, 3 - почта',
-//     );
-
-//     if (userInput === null) break;
-
-//     userInput = Number(userInput);
-
-//     if (userInput >= 1 && userInput <= 3) break;
-//   }
-
-//   switch (userInput) {
-//     case 1:
-//       console.log('самовывоз');
-//       break;
-//     case 2:
-//       console.log('курьер');
-//       break;
-//     case 3:
-//       console.log('почта');
-//       break;
-//     default:
-//       console.log('отмена');
-//   }
-// }
+console.log('DONE!');
+ */
 
