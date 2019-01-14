@@ -1,52 +1,48 @@
 'use strict';
 
 const User = function User({ name = 'user', email = '', phone = '' }) {
-  // const { name, email, phone } = config;
-
-  // Когда вызвали через new в this
-  // записывается ссылка на тот пустой обьект
-  // this = {}
+  // 1. Создается пустой обьект
+  // 2. this получает ссылку на созданный обьект
 
   this.name = name;
   this.email = email;
   this.phone = phone;
 
-  this.changeName = function(newName) {
-    this.name = newName;
-  };
+  // 3. в Свойство __proto__ обьекта записывается ссылка на обьект User.prototype
+  // тоесть User.prototype это ПРОТОТИП будущего обьекта
+  // this.__proto__ = User.prototype;
 
-  // Делает за нас автоматически
-  // return this;
+  // 4. ссылка на обьект возвращается
+  // return this
 };
 
-// Статическое свойство, доступно только на самом конструкторе
-// User.myProp = 'static prop!';
-// console.log(User.myProp);
+// {constructor: User}
+User.prototype.changeName = function(newName) {
+  this.name = newName;
+};
 
-// Статический метод, доступен только на самом конструкторе
+User.prototype.showEmail = function() {
+  console.log(this.email);
+};
+
+console.dir(User);
+
 User.showUserInfo = function(userObj) {
   console.log('Name: ', userObj.name);
   console.log('Email: ', userObj.email);
 };
 
-// Паттерн обьект настроек (configuration object)
-// То что получается называется экземпляр
 const mango = new User({
   name: 'Mango',
   email: 'mango@mail.com',
   phone: '99-99-99',
 });
 
-User.showUserInfo(mango);
+const poly = new User({
+  name: 'Poly',
+  email: 'poly@mail.com',
+  phone: '99-99-99',
+});
 
-// console.log(mango);
-// mango.changeName('Poly');
-// console.log(mango);
-
-// Внутренние методы функции, почему работает new
-// const foo = function() {};
-
-// foo(); // [[Call]]
-// const obj = new foo(); // [[Construct]]
-
-// console.log(obj);
+mango.showEmail();
+poly.showEmail();
