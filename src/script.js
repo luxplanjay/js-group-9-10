@@ -1,36 +1,30 @@
 'use strict';
 
-const User = function User({ name = 'user', email = '', phone = '' }) {
-  // 1. Создается пустой обьект
-  // 2. this получает ссылку на созданный обьект
+class User {
+  constructor({ name = 'user', email = '', phone = '' }) {
+    this._name = name;
+    this._email = email;
+    this._phone = phone;
+  }
 
-  this.name = name;
-  this.email = email;
-  this.phone = phone;
+  static showUserInfo(userObj) {
+    console.log(this);
+    console.log('Name: ', userObj._name);
+    console.log('Email: ', userObj._email);
+  }
 
-  // 3. в Свойство __proto__ обьекта записывается ссылка на обьект User.prototype
-  // тоесть User.prototype это ПРОТОТИП будущего обьекта
-  // this.__proto__ = User.prototype;
+  showPhone() {
+    console.log(this._phone);
+  }
 
-  // 4. ссылка на обьект возвращается
-  // return this
-};
+  get name() {
+    return this._name;
+  }
 
-// {constructor: User}
-User.prototype.changeName = function(newName) {
-  this.name = newName;
-};
-
-User.prototype.showEmail = function() {
-  console.log(this.email);
-};
-
-console.dir(User);
-
-User.showUserInfo = function(userObj) {
-  console.log('Name: ', userObj.name);
-  console.log('Email: ', userObj.email);
-};
+  set name(newName) {
+    this._name = newName;
+  }
+}
 
 const mango = new User({
   name: 'Mango',
@@ -38,11 +32,7 @@ const mango = new User({
   phone: '99-99-99',
 });
 
-const poly = new User({
-  name: 'Poly',
-  email: 'poly@mail.com',
-  phone: '99-99-99',
-});
-
-mango.showEmail();
-poly.showEmail();
+console.log(mango);
+console.log(mango.name);
+mango.name = 'Poly';
+console.log(mango.name);
