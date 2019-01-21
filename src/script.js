@@ -20,46 +20,52 @@ const players = [
 
 // Array.map
 {
-  // const getPlayerNames = allPlayers => allPlayers.map(player => player.name);
-  // const playerNames = getPlayerNames(players);
-  // console.table(playerNames);
-  // const updatePlayerById = (allPlayers, playerId, hours) => {
-  //   return allPlayers.map(player => {
-  //     if (player.id === playerId) {
-  //       return {
-  //         ...player,
-  //         timePlayed: player.timePlayed + hours,
-  //       };
-  //     }
-  //     return player;
-  //   });
-  // };
-  // const udpatedPlayers = updatePlayerById(players, 'player-2', 200);
-  // console.table(udpatedPlayers);
+  const getPlayerNames = allPlayers => allPlayers.map(player => player.name);
+
+  const playerNames = getPlayerNames(players);
+  console.table(playerNames);
+
+  const updatePlayerById = (allPlayers, playerId, hours) => {
+    return allPlayers.map(player => {
+      if (player.id === playerId) {
+        return {
+          ...player,
+          timePlayed: player.timePlayed + hours,
+        };
+      }
+      return player;
+    });
+  };
+
+  const udpatedPlayers = updatePlayerById(players, 'player-2', 200);
+  console.table(udpatedPlayers);
 }
 
 // Array.filter
 {
-  // const onlinePlayers = players.filter(player => player.online);
-  // console.table(onlinePlayers);
-  // const hardcorePlayers = players.filter(player => player.timePlayed >= 200);
-  // console.log(hardcorePlayers);
+  const onlinePlayers = players.filter(player => player.online);
+  console.table(onlinePlayers);
+
+  const hardcorePlayers = players.filter(player => player.timePlayed >= 200);
+  console.log(hardcorePlayers);
 }
 
 // Array.find
 {
-  // const findPlayerById = (allPlayers, playerId) =>
-  //   allPlayers.find(player => player.id === playerId);
-  // const player = findPlayerById(players, 'player-3');
-  // console.log(player);
+  const findPlayerById = (allPlayers, playerId) =>
+    allPlayers.find(player => player.id === playerId);
+
+  const player = findPlayerById(players, 'player-3');
+  console.log(player);
 }
 
 // Array.every и Array.some
 {
-  // const isAllOnline = players.every(player => player.online);
-  // console.log('isAllOnline: ', isAllOnline);
-  // const isAnyOnline = players.some(player => player.online);
-  // console.log('isAnyOnline: ', isAnyOnline);
+  const isAllOnline = players.every(player => player.online);
+  console.log('isAllOnline: ', isAllOnline);
+
+  const isAnyOnline = players.some(player => player.online);
+  console.log('isAnyOnline: ', isAnyOnline);
 }
 
 // Chaining
@@ -68,10 +74,13 @@ const players = [
   // console.table(onlinePlayers);
   // const playerNames = onlinePlayers.map(player => player.name);
   // console.table(playerNames);
-  // const onlinePlayerNames = players
-  //   .filter(player => player.online)
-  //   .map(player => player.name);
-  // console.table(onlinePlayerNames);
+
+  const onlinePlayerNames = players
+    .filter(player => player.online)
+    .map(player => player.name);
+
+  console.table(onlinePlayerNames);
+
   // ======================================================
   // const numbers = [1, 2, 3, 4, 5];
   // const greaterThenThree = numbers.filter(number => number > 3);
