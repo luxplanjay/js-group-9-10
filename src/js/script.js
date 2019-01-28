@@ -1,57 +1,51 @@
 'use strict';
 
-{
-  // const games = {
-  //   'game-1': { id: 'game-1', title: 'Total War' },
-  //   'game-2': { id: 'game-2', title: 'Metro' },
-  //   'game-3': { id: 'game-3', title: 'Witcher' },
-  //   'game-4': { id: 'game-4', title: 'Warhammer' },
-  //   'game-5': { id: 'game-5', title: 'Company of Heroes' },
-  //   'game-6': { id: 'game-6', title: 'Baldurs Gate' },
-  //   'game-7': { id: 'game-7', title: 'Dragon Age' },
-  // };
-  // const players = [
-  //   {
-  //     id: 'player-1',
-  //     name: 'Mango',
-  //     timePlayed: 310,
-  //     online: false,
-  //     games: ['game-2', 'game-4'],
-  //   },
-  //   {
-  //     id: 'player-2',
-  //     name: 'Poly',
-  //     timePlayed: 470,
-  //     online: true,
-  //     games: ['game-1', 'game-3', 'game-4'],
-  //   },
-  //   {
-  //     id: 'player-3',
-  //     name: 'Kiwi',
-  //     timePlayed: 230,
-  //     online: true,
-  //     games: ['game-4', 'game-6'],
-  //   },
-  //   {
-  //     id: 'player-4',
-  //     name: 'Ajax',
-  //     timePlayed: 150,
-  //     online: false,
-  //     games: ['game-3', 'game-7'],
-  //   },
-  //   {
-  //     id: 'player-5',
-  //     name: 'Chelsey',
-  //     timePlayed: 80,
-  //     online: true,
-  //     games: ['game-2', 'game-5', 'game-7'],
-  //   },
-  // ];
-  // const playerId = 'player-1';
-  // const player = players.find(player => player.id === playerId);
-  // let playerGames;
-  // if (player) {
-  //   playerGames = player.games.map(gameId => games[gameId]);
-  // }
-  // console.table(playerGames);
-}
+// const list = document.querySelector('.list');
+// console.dir(list);
+
+// const listItems = list.querySelectorAll('.item');
+// console.log(listItems);
+
+// const article = document.querySelector('.post');
+
+// const postLink = document.querySelector('.post-link');
+
+// console.log(article);
+
+// const image = document.querySelector('img');
+// console.dir(image.src);
+// image.src =
+//   'https://images.pexels.com/photos/66898/elephant-cub-tsavo-kenya-66898.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
+
+// const postLink = document.querySelector('.post-link');
+
+// console.dir(postLink.classList.contains('post-link'));
+
+// postLink.classList.add('active');
+
+// postLink.classList.remove('active');
+
+// document.querySelector('button').addEventListener('click', () => {
+//   postLink.classList.toggle('active');
+// });
+
+// const image = document.querySelector('.post img');
+
+// console.dir(image);
+
+// image.width = 1000;
+
+const post = document.querySelector('.post');
+
+console.log(post.dataset);
+
+post.dataset.id = 'new id!!!!!';
+
+post.dataset.hello = 'hello';
+
+post.setAttribute('data-hello', 'hello');
+
+// const button = document.querySelector('.action');
+// const action = button.dataset.action;
+
+// console.log(action);
