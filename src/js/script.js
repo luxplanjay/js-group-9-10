@@ -1,51 +1,101 @@
 'use strict';
 
-// const list = document.querySelector('.list');
-// console.dir(list);
+const buttonActions = {
+  EDIT: 'edit',
+  DELETE: 'delete',
+};
 
-// const listItems = list.querySelectorAll('.item');
-// console.log(listItems);
+const data = [
+  {
+    id: 'id-1',
+    body:
+      'Pellentesque libero tortor, tincidunt et, tincidunt eget, semper nec, quam. Fusce ac felis sit amet ligula pharetra condimentum. Phasellus dolor.',
+  },
+  {
+    id: 'id-2',
+    body:
+      'Ut id nisl quis enim dignissim sagittis. Quisque malesuada placerat nisl. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Pellentesque libero tortor, tincidunt et, tincidunt eget, semper nec, quam.',
+  },
+  {
+    id: 'id-3',
+    body:
+      'Quisque malesuada placerat nisl. Fusce convallis metus id felis luctus adipiscing.',
+  },
+];
 
-// const article = document.querySelector('.post');
+const createListItem = ({ id, body }) => {
+  const listItem = document.createElement('li');
+  listItem.classList.add('list-item');
+  listItem.dataset.id = id;
 
-// const postLink = document.querySelector('.post-link');
+  const text = document.createElement('p');
+  text.classList.add('text');
+  text.textContent = body;
 
-// console.log(article);
+  const actionsContainer = document.createElement('div');
+  actionsContainer.classList.add('actions');
 
-// const image = document.querySelector('img');
-// console.dir(image.src);
-// image.src =
-//   'https://images.pexels.com/photos/66898/elephant-cub-tsavo-kenya-66898.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
+  const editButton = document.createElement('button');
+  editButton.classList.add('btn');
+  editButton.textContent = 'Edit';
+  editButton.dataset.action = buttonActions.EDIT;
 
-// const postLink = document.querySelector('.post-link');
+  const deleteButton = document.createElement('button');
+  deleteButton.classList.add('btn');
+  deleteButton.textContent = 'Delete';
+  deleteButton.dataset.action = buttonActions.DELETE;
 
-// console.dir(postLink.classList.contains('post-link'));
+  actionsContainer.append(editButton, deleteButton);
+  listItem.append(text, actionsContainer);
 
-// postLink.classList.add('active');
+  return listItem;
+};
 
-// postLink.classList.remove('active');
+const renderListItems = (listRef, data) => {
+  const listItems = data.map(item => createListItem(item));
 
-// document.querySelector('button').addEventListener('click', () => {
-//   postLink.classList.toggle('active');
-// });
+  listRef.append(...listItems);
+};
 
-// const image = document.querySelector('.post img');
+const list = document.querySelector('.list');
 
-// console.dir(image);
+renderListItems(list, data);
 
-// image.width = 1000;
+{
+  // Fragment
+  // const fragment = document.createDocumentFragment();
+  // console.log(fragment);
+  // for (let i = 0; i < 10; i += 1) {
+  //   const item = document.createElement('li');
+  //   item.textContent = `Item ${i}`;
+  //   fragment.appendChild(item);
+  // }
+  // list.appendChild(fragment);
+}
 
-const post = document.querySelector('.post');
+// console.log(list.innerHTML);
+// list.innerHTML = '';
 
-console.log(post.dataset);
-
-post.dataset.id = 'new id!!!!!';
-
-post.dataset.hello = 'hello';
-
-post.setAttribute('data-hello', 'hello');
-
-// const button = document.querySelector('.action');
-// const action = button.dataset.action;
-
-// console.log(action);
+{
+  // insertAdjacentHTML
+  // const createListItemMarkup = ({ id, body }) => {
+  //   const markup = `
+  //   <li class="list-item" data-id="${id}">
+  //     <p class="text">${body}</p>
+  //     <div class="actions">
+  //       <button class="btn" data-action="${buttonActions.EDIT}">Edit</button>
+  //       <button class="btn" data-action="${buttonActions.DELETE}">Delete</button>
+  //     </div>
+  //   </li>`;
+  //   return markup;
+  // };
+  // const renderListItemsMarkup = data => {
+  //   // const markup = data.map(item => createListItemMarkup(item)).join('');
+  //   const markup = data.reduce(
+  //     (html, item) => html + createListItemMarkup(item),
+  //     '',
+  //   );
+  //   list.insertAdjacentHTML('beforeend', markup);
+  // };
+  // renderListItemsMarkup(data);
+}

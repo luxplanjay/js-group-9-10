@@ -14,19 +14,17 @@ body {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.post {
-  border: 1px solid red;
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.post-link {
-  text-transform: uppercase;
-  text-decoration: none;
-  background-color: #212121;
-  color: #fff;
-  display: inline-flex;
-  padding: 8px 24px;
+.list-item {
+  border-bottom: 1px solid #212121;
+  padding: 8px;
 }
 
-.post-link.active {
-  background-color: palevioletred;
+.list-item .text {
+  line-height: 1.5;
 }
