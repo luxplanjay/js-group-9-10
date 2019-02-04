@@ -23,6 +23,47 @@ const data = [
   },
 ];
 
+class Model {
+  static generateUniqueId = () =>
+    Math.random()
+      .toString(36)
+      .substring(2, 15) +
+    Math.random()
+      .toString(36)
+      .substring(2, 15);
+
+  constructor(items = []) {
+    this._items = items;
+  }
+
+  save(text) {
+    const newItem = {
+      id: Model.generateUniqueId(),
+      body: text,
+    };
+
+    this._items.push(newItem);
+
+    return newItem;
+  }
+
+  filter(query = '') {
+    return this._items.filter(item =>
+      item.body.toLowerCase().includes(query.toLowerCase()),
+    );
+  }
+}
+
+const model = new Model(data);
+
+// Refs
+const refs = {
+  list: document.querySelector('.list'),
+  editor: document.querySelector('.editor'),
+  filter: document.querySelector('.filter'),
+};
+
+// UI
 const createListItem = ({ id, body }) => {
   const listItem = document.createElement('li');
   listItem.classList.add('list-item');
@@ -51,51 +92,47 @@ const createListItem = ({ id, body }) => {
   return listItem;
 };
 
-const renderListItems = (listRef, data) => {
-  const listItems = data.map(item => createListItem(item));
+const renderListItems = (listRef, items) => {
+  const listItems = items.map(item => createListItem(item));
 
+  listRef.innerHTML = '';
   listRef.append(...listItems);
 };
 
-const list = document.querySelector('.list');
+const addItemToList = (listRef, item) => {
+  const listItem = createListItem(item);
 
-renderListItems(list, data);
+  listRef.appendChild(listItem);
+};
 
-{
-  // Fragment
-  // const fragment = document.createDocumentFragment();
-  // console.log(fragment);
-  // for (let i = 0; i < 10; i += 1) {
-  //   const item = document.createElement('li');
-  //   item.textContent = `Item ${i}`;
-  //   fragment.appendChild(item);
-  // }
-  // list.appendChild(fragment);
-}
+// Handlers
+const handleEditorSubmit = event => {
+  event.preventDefault();
 
-// console.log(list.innerHTML);
-// list.innerHTML = '';
+  const [input] = event.currentTarget.elements;
+  const inputValue = input.value;
 
-{
-  // insertAdjacentHTML
-  // const createListItemMarkup = ({ id, body }) => {
-  //   const markup = `
-  //   <li class="list-item" data-id="${id}">
-  //     <p class="text">${body}</p>
-  //     <div class="actions">
-  //       <button class="btn" data-action="${buttonActions.EDIT}">Edit</button>
-  //       <button class="btn" data-action="${buttonActions.DELETE}">Delete</button>
-  //     </div>
-  //   </li>`;
-  //   return markup;
-  // };
-  // const renderListItemsMarkup = data => {
-  //   // const markup = data.map(item => createListItemMarkup(item)).join('');
-  //   const markup = data.reduce(
-  //     (html, item) => html + createListItemMarkup(item),
-  //     '',
-  //   );
-  //   list.insertAdjacentHTML('beforeend', markup);
-  // };
-  // renderListItemsMarkup(data);
-}
+  if (inputValue.trim() === '') {
+    return alert('Ты ничего не ввел!');
+  }
+
+  const savedItem = model.save(inputValue);
+
+  addItemToList(refs.list, savedItem);
+
+  event.currentTarget.reset();
+};
+
+const handleFilterChange = event => {
+  console.log(event.target.value);
+
+  const filteredItems = model.filter(event.target.value);
+
+  renderListItems(refs.list, filteredItems);
+};
+
+renderListItems(refs.list, data);
+
+// Listeners
+refs.editor.addEventListener('submit', handleEditorSubmit);
+refs.filter.addEventListener('input', handleFilterChange);
