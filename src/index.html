@@ -9,18 +9,22 @@
   </head>
 
   <body>
-    <form class="editor">
-      <input type="text" />
+    <button data-action="open-modal">Open Modal</button>
 
-      <button type="submit">Добавить</button>
-    </form>
-
-    <hr />
-    <input type="text" class="filter" />
-    <hr />
-
-    <ul class="list"></ul>
-
+    <div class="backdrop js-backdrop">
+      <div class="modal">
+        <h2>Modal Title</h2>
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis quis
+          aliquam ipsa esse ipsum unde accusantium ad consectetur voluptatem in
+          ex, explicabo enim vitae atque? Dolorem totam consequatur, illo
+          adipisci voluptates unde commodi, ratione facere sunt illum, magnam
+          labore pariatur veritatis placeat dolorum modi numquam sed! Saepe
+          velit atque exercitationem.
+        </p>
+        <button data-action="close-modal">Close</button>
+      </div>
+    </div>
     <script src="js/script.js"></script>
   </body>
 </html>

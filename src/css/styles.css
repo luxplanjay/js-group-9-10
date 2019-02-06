@@ -14,17 +14,30 @@ body {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+body.modal-visible .backdrop {
+  opacity: 1;
+  visibility: visible;
 }
 
-.list-item {
-  border-bottom: 1px solid #212121;
-  padding: 8px;
+.backdrop {
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 9999;
 }
 
-.list-item .text {
-  line-height: 1.5;
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  width: 560px;
+  min-height: 300px;
+  padding: 16px;
 }
