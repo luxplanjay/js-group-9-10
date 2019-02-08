@@ -47,6 +47,10 @@ class Model {
     return newItem;
   }
 
+  delete(id) {
+    this._items = this._items.filter(item => item.id !== id);
+  }
+
   filter(query = '') {
     return this._items.filter(item =>
       item.body.toLowerCase().includes(query.toLowerCase()),
@@ -131,8 +135,40 @@ const handleFilterChange = event => {
   renderListItems(refs.list, filteredItems);
 };
 
+const removeListItem = element => {
+  const parentListItem = element.closest('.list-item');
+  const id = parentListItem.dataset.id;
+
+  model.delete(id);
+  parentListItem.remove();
+};
+
+const handleListClick = ({ target }) => {
+  // console.log(event.target);
+  // console.log(event.target.nodeName);
+
+  if (target.nodeName !== 'BUTTON') return;
+
+  const action = target.dataset.action;
+
+  switch (action) {
+    case buttonActions.DELETE:
+      console.log('delete');
+      removeListItem(target);
+      break;
+
+    case buttonActions.EDIT:
+      console.log('edit');
+      break;
+
+    default:
+      console.log('invalid action!');
+  }
+};
+
 renderListItems(refs.list, data);
 
 // Listeners
 refs.editor.addEventListener('submit', handleEditorSubmit);
 refs.filter.addEventListener('input', handleFilterChange);
+refs.list.addEventListener('click', handleListClick);
