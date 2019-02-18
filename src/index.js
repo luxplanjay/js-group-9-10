@@ -1,12 +1,22 @@
+import Notyf from 'notyf';
+import Micromodal from 'micromodal';
 import { buttonActions } from './js/utils/constants';
 import Model from './js/model';
 import initialNotes from './initial-notes.json';
-import { getRefs, renderListItems, addItemToList } from './js/view';
-
+import {
+  getRefs,
+  renderListItems,
+  addItemToList,
+  removeListItem,
+  findParentListItem,
+} from './js/view';
 import './css/styles.css';
+import './css/micromodal.css';
+import 'notyf/dist/notyf.min.css';
 
 const model = new Model(initialNotes);
 const refs = getRefs();
+const notyf = new Notyf();
 
 // Handlers
 const handleEditorSubmit = event => {
@@ -16,36 +26,26 @@ const handleEditorSubmit = event => {
   const inputValue = input.value;
 
   if (inputValue.trim() === '') {
-    return alert('Ты ничего не ввел!');
+    return notyf.alert('Ты ничего не ввел!');
   }
 
   const savedItem = model.save(inputValue);
 
   addItemToList(refs.list, savedItem);
 
+  notyf.confirm('Todo успешно добавлено!');
+  Micromodal.close('note-editor-modal');
+
   event.currentTarget.reset();
 };
 
 const handleFilterChange = event => {
-  console.log(event.target.value);
-
   const filteredItems = model.filter(event.target.value);
 
   renderListItems(refs.list, filteredItems);
 };
 
-const removeListItem = element => {
-  const parentListItem = element.closest('.list-item');
-  const id = parentListItem.dataset.id;
-
-  model.delete(id);
-  parentListItem.remove();
-};
-
 const handleListClick = ({ target }) => {
-  // console.log(event.target);
-  // console.log(event.target.nodeName);
-
   if (target.nodeName !== 'BUTTON') return;
 
   const action = target.dataset.action;
@@ -53,7 +53,11 @@ const handleListClick = ({ target }) => {
   switch (action) {
     case buttonActions.DELETE:
       console.log('delete');
-      removeListItem(target);
+      const listItem = findParentListItem(target);
+      const todoId = listItem.dataset.id;
+
+      model.delete(todoId);
+      removeListItem(listItem);
       break;
 
     case buttonActions.EDIT:
@@ -65,9 +69,14 @@ const handleListClick = ({ target }) => {
   }
 };
 
+const handleOpenEditor = () => {
+  Micromodal.show('note-editor-modal');
+};
+
 renderListItems(refs.list, model.items);
 
 // Listeners
 refs.editor.addEventListener('submit', handleEditorSubmit);
 refs.filter.addEventListener('input', handleFilterChange);
 refs.list.addEventListener('click', handleListClick);
+refs.openEditorModalBtn.addEventListener('click', handleOpenEditor);

@@ -41,8 +41,21 @@ export const addItemToList = (listRef, item) => {
   listRef.appendChild(listItem);
 };
 
+export const findParentListItem = child => {
+  const parentListItem = child.closest('.list-item');
+
+  return parentListItem;
+};
+
+export const removeListItem = listItem => {
+  listItem.remove();
+};
+
 export const getRefs = () => ({
   list: document.querySelector('.list'),
   editor: document.querySelector('.editor'),
   filter: document.querySelector('.filter'),
+  openEditorModalBtn: document.querySelector(
+    'button[data-action="open-editor"]',
+  ),
 });

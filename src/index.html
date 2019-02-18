@@ -9,11 +9,6 @@
 
   <body>
     <header class="masthead">
-      <form class="editor">
-        <input type="text" />
-        <button type="submit">Добавить</button>
-      </form>
-
       <section>
         <span>Search</span>
         <input type="text" class="filter" />
@@ -23,5 +18,33 @@
     <hr />
 
     <ul class="list"></ul>
+
+    <button data-action="open-editor">Open Modal</button>
+
+    <div
+      class="modal micromodal-slide"
+      id="note-editor-modal"
+      aria-hidden="true"
+    >
+      <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div
+          class="modal__container"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-1-title"
+        >
+          <form class="editor" id="todo-editor">
+            <input type="text" />
+          </form>
+
+          <footer class="modal__footer">
+            <button form="todo-editor" type="submit">
+              Добавить
+            </button>
+            <button data-micromodal-close>Cancel</button>
+          </footer>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
