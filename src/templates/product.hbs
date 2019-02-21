@@ -1,0 +1,26 @@
+<li class="product-list__item" data-id="{{id}}">
+  <div class="product">
+    <img class="product__img" src="{{imageUrl}}" alt="" width="320" />
+    <div class="product__content">
+      <h2 class="product__title">{{title}}</h2>
+      <p class="product__descr">
+        {{description}}
+      </p>
+      <ul class="product__ingredients">
+        {{#each ingredients}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+      <p>Price: {{price}}$</p>
+      {{#if available}}
+        <button>Add to cart</button>
+      {{/if}}
+    </div>
+
+    {{#unless available}}
+      <div class="product__banner">
+        Sold Out
+      </div>
+    {{/unless}}
+  </div>
+</li>
