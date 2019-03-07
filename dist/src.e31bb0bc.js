@@ -104,49 +104,87 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"index.js":[function(require,module,exports) {
-var refs = {
-  clockface: document.querySelector('.timer h1'),
-  startBtn: document.querySelector('button[data-action="start"]'),
-  stopBtn: document.querySelector('button[data-action="stop"]')
+})({"location.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var getUserLocation = function getUserLocation() {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      var failed = Math.random() > 0.5;
+      failed ? reject('Error while getting location') : resolve('Ukraine');
+    }, 500);
+  });
 };
 
-var formatTime = function formatTime(time) {
-  var date = new Date(time);
-  var ms = String(date.getMilliseconds()).slice(0, 1);
-  var seconds = date.getSeconds();
-  var minutes = date.getMinutes();
-  return "".concat(minutes, ":").concat(seconds, ".").concat(ms);
-};
+var _default = getUserLocation;
+exports.default = _default;
+},{}],"todos.js":[function(require,module,exports) {
+"use strict";
 
-var timer = {
-  id: null,
-  startTime: null,
-  active: false,
-  start: function start() {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var todos = {
+  items: ['item-1', 'item-2'],
+  add: function add(item) {
     var _this = this;
 
-    if (this.active) {
-      return;
-    }
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        _this.items.push(item);
 
-    this.active = true;
-    this.startTime = Date.now();
-    this.id = setInterval(function () {
-      var currentTime = Date.now();
-      var deltaTime = currentTime - _this.startTime;
-      var formattedTime = formatTime(deltaTime);
-      refs.clockface.textContent = formattedTime;
-    }, 100);
+        resolve(item);
+      }, 300);
+    });
   },
-  stop: function stop() {
-    clearInterval(this.id);
-    this.active = false;
+  delete: function _delete(item) {
+    var _this2 = this;
+
+    return new Promise(function (resolve) {
+      setTimeout(function () {
+        _this2.items = _this2.items.filter(function (i) {
+          return item !== i;
+        });
+        resolve(_this2.items);
+      }, 500);
+    });
   }
 };
-refs.startBtn.addEventListener('click', timer.start.bind(timer));
-refs.stopBtn.addEventListener('click', timer.stop.bind(timer));
-},{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var _default = todos;
+exports.default = _default;
+},{}],"index.js":[function(require,module,exports) {
+"use strict";
+
+var _location = _interopRequireDefault(require("./location"));
+
+var _todos = _interopRequireDefault(require("./todos"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _location.default)().then(function (location) {
+  console.log("Location: ".concat(location));
+}).catch(function (erorr) {
+  console.log(erorr);
+});
+
+var updateUI = function updateUI(data) {
+  return console.log(data);
+};
+
+_todos.default.add('item-3').then(function (addedItem) {
+  return updateUI(addedItem);
+});
+
+_todos.default.delete('item-2').then(function (items) {
+  return updateUI(items);
+});
+},{"./location":"location.js","./todos":"todos.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -173,7 +211,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50302" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49494" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
