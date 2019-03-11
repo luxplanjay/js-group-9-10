@@ -1,15 +1,35 @@
-import getUserLocation from './location';
-import todos from './todos';
+const getImages = query => {
+  return fetch(
+    `https://pixabay.com/api/?key=5837779-ac3ba737206b541ae294f1119&q=${query}&image_type=photo`
+  ).then(response => response.json());
+};
 
-getUserLocation()
-  .then(location => {
-    console.log(`Location: ${location}`);
-  })
-  .catch(erorr => {
-    console.log(erorr);
-  });
+getImages('dog').then(console.log);
 
-const updateUI = data => console.log(data);
+// const postToAdd = {
+//   userId: 10,
+//   title: 'My title',
+//   body: 'My body'
+// };
 
-todos.add('item-3').then(addedItem => updateUI(addedItem));
-todos.delete('item-2').then(items => updateUI(items));
+// const url = 'https://jsonplaceholder.typicode.com/posts';
+// const options = {
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/json'
+//   },
+//   body: JSON.stringify(postToAdd)
+// };
+
+// fetch(url, options)
+//   .then(response => {
+//     if (response.ok) {
+//       return response.json();
+//     }
+
+//     throw new Error('Error while fetching data: ' + response.statusText);
+//   })
+//   .then(savedPost => {
+//     console.log(savedPost);
+//   })
+//   .catch(error => console.log(error));
