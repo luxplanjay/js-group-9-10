@@ -59,6 +59,7 @@
 //   console.log(date);
 // }
 
+// ***************************************
 // function* myGenerator() {
 //   yield 1;
 //   console.log('after yield 1');
@@ -80,6 +81,7 @@
 //   console.log(value);
 // }
 
+// ***************************************
 // const myGenerator = function*(max) {
 //   for (let i = 0; i < max; i += 1) {
 //     yield i;
@@ -92,26 +94,27 @@
 // console.log(generator.next());
 // console.log(generator.next());
 
-const questionGenerator = function*() {
-  const answer = yield 'Сколько будет 5 + 5?';
+// ***************************************
+// const questionGenerator = function*() {
+//   const answer = yield 'Сколько будет 5 + 5?';
 
-  if (answer === 10) {
-    console.log('правильно');
-  } else {
-    const isSure = yield 'Точно????';
+//   if (answer === 10) {
+//     console.log('правильно');
+//   } else {
+//     const isSure = yield 'Точно????';
 
-    console.log(isSure);
+//     console.log(isSure);
 
-    if (isSure === 'yes') {
-      console.log('ну ладно ))))');
-    } else {
-      console.log('тогда попробуй еще');
-    }
-  }
-};
+//     if (isSure === 'yes') {
+//       console.log('ну ладно ))))');
+//     } else {
+//       console.log('тогда попробуй еще');
+//     }
+//   }
+// };
 
-const question = questionGenerator();
+// const question = questionGenerator();
 
-console.log(question.next());
-console.log(question.next(20));
-console.log(question.next('yes'));
+// console.log(question.next());
+// console.log(question.next(20));
+// console.log(question.next('yes'));
