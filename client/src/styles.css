@@ -1,0 +1,36 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    color: #212121;
+}
+
+.message-feed {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    margin-top: 24px;
+}
+
+.message-feed li + li {
+    margin-top: 8px;
+}
+
+.message-feed span {
+    font-weight: 700;
+}
+
+.message-editor {
+    display: flex;
+    align-items: center;
+}
+
+.message-editor textarea {
+    display: inline-block;
+    margin-right: 16px;
+    font: inherit;
+    resize: none;
+}
