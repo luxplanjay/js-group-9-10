@@ -18,6 +18,7 @@
 - [JS30 от Wes](https://www.youtube.com/playlist?list=PLu8EoSxDXHP6CGK4YVJhL_VWetA865GOH)
 - [free code camp](https://www.youtube.com/channel/UC8butISFwT-Wl7EV0hUK0BQ/playlists)
 - [TernopilJS](https://www.youtube.com/channel/UC9ASiMVFF0o-oi68RqzzY-Q/playlists)
+- [Свежий курс по основам React 2019 год](https://youtu.be/DLX62G4lc44)
 
 # Books
 
